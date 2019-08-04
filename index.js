@@ -1,24 +1,26 @@
 import { ApolloServer } from 'apollo-server';
 import { merge } from 'lodash';
 import { makeExecutableSchema } from 'graphql-tools';
+import mongoose from 'mongoose';
 
 import { 
-  typeDef as Book, 
-  resolvers as bookResolvers,
-} from './src/book.js';
+  typeDef as Usuario, 
+  resolvers as usuarioResolvers
+} from './src/usuario';
+
+mongoose.connect('mongodb://localhost:27017/crono', {useNewUrlParser: true})
+        .catch(err => console.error(err));
 
 const Query = `
   type Query {
     _empty: String
   }
 `;
-const resolvers = {};
+
 const schema = makeExecutableSchema({
-  typeDefs: [ Query, Book ],
-  resolvers: merge(bookResolvers),
+  typeDefs: [ Query, Usuario ],
+  resolvers: merge(usuarioResolvers)
 });
-
-
 const server = new ApolloServer({ schema });
 
 server.listen().then(({ url }) => {
