@@ -1,0 +1,24 @@
+{
+  "name": "crono_gql",
+  "version": "1.0.0",
+  "description": "Servidor Graphql de Cronos",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "author": "Bombe",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.8.1",
+    "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.3"
+  }
+}
