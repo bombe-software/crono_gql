@@ -17,9 +17,15 @@ const Query = `
   }
 `;
 
+export const testResolver = {
+  Query: {
+    _empty: () => "Boiler plate completo"  
+  }
+}
+
 const schema = makeExecutableSchema({
   typeDefs: [ Query, Usuario ],
-  resolvers: merge(usuarioResolvers)
+  resolvers: merge(testResolver,usuarioResolvers)
 });
 const server = new ApolloServer({ schema });
 
