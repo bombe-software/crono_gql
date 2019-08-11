@@ -5,18 +5,39 @@ export const typeDef = `
     usuarios: [Usuario]
   }
   type Usuario {
-    nombre_usuario: String
-    contrasena: String
+    nombre: String
+    contrasena: String,
+    materias: [Materia]
+  }
+
+  extend type Mutation{
+    add_usuario(
+      nombre: String!,
+      contrasena: String!
+    ): Usuario
   }
 `;
 
 const Usuario = mongoose.model('usuario', mongoose.Schema({
-  nombre_usuario: String,
-  contrasena: String
+  nombre: String,
+  contrasena: String,
+  materias: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'materia'
+  }]
 }));
 
 export const resolvers = {
   Query: {
     usuarios: () => Usuario.find({})  
+  },
+  Mutation: {
+    add_usuario: async (parent, { nombre, contrasena }, context, info) => {
+      const usuario = new Usuario({
+        nombre, contrasena
+      });
+      await usuario.save();
+      return usuario;
+    }
   }
 }

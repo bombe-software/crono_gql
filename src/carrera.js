@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+const Escuela = mongoose.model('escuela');
 
 const Carrera = mongoose.model('carrera', mongoose.Schema({
   carrera: String
@@ -30,7 +31,11 @@ export const resolvers = {
       const carrera = new Carrera({
         nombre, escuela
       });
-      await carrera.save();
+
+      const result = await carrera.save();
+
+      await Escuela.findByIdAndUpdate(escuela, { $push: { "carreras": result._id } }, { new: true });
+
       return carrera;
     }
   }

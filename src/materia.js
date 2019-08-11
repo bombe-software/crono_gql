@@ -27,10 +27,27 @@ export const typeDef = `
     escuela: Escuela
     semestre: Int
   }
+  extend type Mutation{
+    add_materia(
+      nombre: String!,
+      carrera: Carrera!, 
+      escuela: Escuela!,
+      semestre: Int!
+    ): Materia
+  } 
 `;
 
 export const resolvers = {
   Query: {
     materias: () => Materia.find({})  
+  },
+  Mutation: {
+    add_materia: async (parent, { nombre, carrera, escuela, semestre }, context, info) => {
+      const materia = new Materia({
+        nombre, carrera, escuela, semestre
+      });
+      await materia.save();
+      return materia;
+    }
   }
 }
