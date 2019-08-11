@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-const Escuela = mongoose.model('escuela');
+import { Escuela } from './escuela';
 
-const Carrera = mongoose.model('carrera', mongoose.Schema({
+export const Carrera = mongoose.model('carrera', mongoose.Schema({
   carrera: String
 }));
 

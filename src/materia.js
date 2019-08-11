@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 //Agregar populate
 
-
-const Materia = mongoose.model('materia', mongoose.Schema({
+export const Materia = mongoose.model('materia', mongoose.Schema({
     nombre: String,
     carrera: {
         type: mongoose.Schema.Types.ObjectId,
@@ -30,8 +29,8 @@ export const typeDef = `
   extend type Mutation{
     add_materia(
       nombre: String!,
-      carrera: Carrera!, 
-      escuela: Escuela!,
+      carrera: String!, 
+      escuela: String!,
       semestre: Int!
     ): Materia
   } 

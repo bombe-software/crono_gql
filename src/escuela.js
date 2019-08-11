@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Escuela = mongoose.model('escuela', mongoose.Schema({
+export const Escuela = mongoose.model('escuela', mongoose.Schema({
   nombre: String,
   carreras: [{
     type: mongoose.Schema.Types.ObjectId,

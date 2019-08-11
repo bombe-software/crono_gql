@@ -1,5 +1,14 @@
 import mongoose from 'mongoose';
 
+export const Usuario = mongoose.model('usuario', mongoose.Schema({
+  nombre: String,
+  contrasena: String,
+  materias: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'materia'
+  }]
+}));
+
 export const typeDef = `
   extend type Query {
     usuarios: [Usuario]
@@ -17,15 +26,6 @@ export const typeDef = `
     ): Usuario
   }
 `;
-
-const Usuario = mongoose.model('usuario', mongoose.Schema({
-  nombre: String,
-  contrasena: String,
-  materias: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'materia'
-  }]
-}));
 
 export const resolvers = {
   Query: {

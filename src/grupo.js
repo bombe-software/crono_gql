@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Grupo = mongoose.model('grupo', mongoose.Schema({
+export const Grupo = mongoose.model('grupo', mongoose.Schema({
   nombre: String,
   docente: String,
   horario: [{

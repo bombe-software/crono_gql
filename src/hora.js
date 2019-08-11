@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-const Grupo = mongoose.model('grupo');
-const Hora = mongoose.model('hora', mongoose.Schema({
+import { Grupo } from './grupo'
+export const Hora = mongoose.model('hora', mongoose.Schema({
   salon: String,
   dia_semana: String,
   hora_inicio: String,
