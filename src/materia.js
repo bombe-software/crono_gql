@@ -8,10 +8,6 @@ export const Materia = mongoose.model('materia', mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'carrera'
     },
-    escuela: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'escuela'
-    },
     periodo: Number
 }));
 
@@ -23,15 +19,13 @@ export const typeDef = `
     id: String
     nombre: String
     carrera: Carrera 
-    escuela: Escuela
-    semestre: Int
+    periodo: Int
   }
   extend type Mutation{
     add_materia(
       nombre: String!,
       carrera: String!, 
-      escuela: String!,
-      semestre: Int!
+      periodo: Int!
     ): Materia
   } 
 `;
@@ -41,9 +35,9 @@ export const resolvers = {
     materias: () => Materia.find({})  
   },
   Mutation: {
-    add_materia: async (parent, { nombre, carrera, escuela, semestre }, context, info) => {
+    add_materia: async (parent, { nombre, carrera, periodo }, context, info) => {
       const materia = new Materia({
-        nombre, carrera, escuela, semestre
+        nombre, carrera, periodo
       });
       await materia.save();
       return materia;

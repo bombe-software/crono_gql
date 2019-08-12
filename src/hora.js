@@ -2,7 +2,10 @@ import mongoose from 'mongoose';
 import { Grupo } from './grupo'
 export const Hora = mongoose.model('hora', mongoose.Schema({
   salon: String,
-  dia_semana: String,
+  dia_semana: {
+    type: String,
+    enum: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+  },
   hora_inicio: String,
   hora_fin: String
 }));

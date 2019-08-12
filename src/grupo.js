@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 export const Grupo = mongoose.model('grupo', mongoose.Schema({
   nombre: String,
   docente: String,
+  materia: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'materia'
+  },
   horario: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'horario'
@@ -17,12 +21,14 @@ export const typeDef = `
     id: String
     nombre: String
     docente: String
+    materia: Materia
     horario: [Hora]
   }
   extend type Mutation{
     add_grupo(
       nombre: String!,
-      docente: String!
+      docente: String!,
+      materia: String!
     ): Grupo
   } 
 `;
@@ -32,9 +38,9 @@ export const resolvers = {
     grupos: () => Grupo.find({})
   },
   Mutation: {
-    add_grupo: async (parent, { nombre, docente }, context, info) => {
+    add_grupo: async (parent, { nombre, docente, materia }, context, info) => {
       const grupo = new Grupo({
-        nombre, docente
+        nombre, docente, materia
       });
       await grupo.save();
       return grupo;

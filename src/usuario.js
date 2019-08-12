@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 export const Usuario = mongoose.model('usuario', mongoose.Schema({
   nombre: String,
   contrasena: String,
-  materias: [{
+  grupos: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'materia'
+    ref: 'grupo'
   }]
 }));
 
@@ -13,10 +13,12 @@ export const typeDef = `
   extend type Query {
     usuarios: [Usuario]
   }
+  
   type Usuario {
+    id: String
     nombre: String
     contrasena: String,
-    materias: [Materia]
+    grupos: [Grupo]
   }
 
   extend type Mutation{
