@@ -9,9 +9,10 @@ export const Grupo = mongoose.model('grupo', mongoose.Schema({
   },
   horario: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'horario'
+    ref: 'hora'
   }]
 }));
+
 
 export const typeDef = `
   extend type Query {
