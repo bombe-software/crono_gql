@@ -18,13 +18,11 @@ export const typeDef = `
   type Materia {
     id: String
     nombre: String
-    carrera: Carrera 
     periodo: Int
   }
   extend type Mutation{
     add_materia(
       nombre: String!,
-      carrera: String!, 
       periodo: Int!
     ): Materia
   } 

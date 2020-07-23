@@ -32,10 +32,6 @@ import {
   resolvers as escuelaResolvers
 } from './src/escuela';
 
-import {
-  typeDef as Carrera,
-  resolvers as carreraResolvers
-} from './src/carrera';
 //Conexion con Mongoose
 mongoose.connect('mongodb://localhost:27017/crono', { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.error(err));
@@ -57,8 +53,8 @@ const emptyResolver = {
 }
 
 const schema = makeExecutableSchema({
-  typeDefs: [Base, Usuario, Materia, Escuela, Grupo, Hora, Carrera],
-  resolvers: merge(emptyResolver, usuarioResolvers, carreraResolvers, escuelaResolvers, grupoResolvers, horaResolvers, materiaResolvers)
+  typeDefs: [Base, Usuario, Materia, Escuela, Grupo, Hora],
+  resolvers: merge(emptyResolver, usuarioResolvers, escuelaResolvers, grupoResolvers, horaResolvers, materiaResolvers)
 });
 const server = new ApolloServer({ schema });
 

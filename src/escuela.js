@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
 export const Escuela = mongoose.model('escuela', mongoose.Schema({
-  nombre: String,
-  carreras: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'carrera'
-  }]
+  nombre: String
 }));
 
 export const typeDef = `
@@ -16,7 +12,6 @@ export const typeDef = `
   type Escuela {
     id: String
     nombre: String
-    carreras: [Carrera]
   }
 
   extend type Mutation{
